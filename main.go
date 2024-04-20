@@ -48,38 +48,48 @@ func main() {
 
 	}, th.CommandEqual("start"))
 
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+
+		apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
+		// URL для запиту погоди в Києві
+		url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=Kyiv&units=metric&appid=%s", apiKey)
+
+		// Виконати GET-запит
+		response, err := http.Get(url)
+		if err != nil {
+			fmt.Printf("Помилка під час виконання запиту: %s", err)
+			return
+		}
+		defer response.Body.Close()
+
+		// Прочитати відповідь у вигляді масиву байтів
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Printf("Помилка при читанні відповіді: %s", err)
+			return
+		}
+
+		// Розкодувати JSON-відповідь
+		var data WeatherData
+		err = json.Unmarshal(body, &data)
+		if err != nil {
+			fmt.Printf("Помилка при розкодуванні JSON: %s", err)
+			return
+		}
+
+		// Вивести температуру
+		tempkiyv := fmt.Sprintf("Температура повітря в Києві: %.1f°C\n", data.Main.Temp)
+
+		message := tu.Message(
+			chatID,
+			tempkiyv,
+		)
+
+		bot.SendMessage(message)
+
+	}, th.CommandEqual("Kyiv"))
+
 	bh.Start()
 
-}
-
-func weather() {
-	apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
-	// URL для запиту погоди в Києві
-	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=Ternopil&units=metric&appid=%s", apiKey)
-
-	// Виконати GET-запит
-	response, err := http.Get(url)
-	if err != nil {
-		fmt.Printf("Помилка під час виконання запиту: %s", err)
-		return
-	}
-	defer response.Body.Close()
-
-	// Прочитати відповідь у вигляді масиву байтів
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Printf("Помилка при читанні відповіді: %s", err)
-		return
-	}
-
-	// Розкодувати JSON-відповідь
-	var data WeatherData
-	err = json.Unmarshal(body, &data)
-	if err != nil {
-		fmt.Printf("Помилка при розкодуванні JSON: %s", err)
-		return
-	}
-
-	// Вивести температуру
-	fmt.Printf("Погода в Києві: %.1f°C\n", data.Main.Temp)
 }
