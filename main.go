@@ -78,21 +78,28 @@ func main() {
 			return
 		}
 		temp := data.Main.Temp
-		// Вивести температуру
-		SENDMESS(temp, "Києві", chatID, bot)
+		SENDMESS(temp, "Києві", chatID, bot, "ТЕСТ УСПІШНО ПРОЙДЕНО!")
 
 	}, th.CommandEqual("Kyiv"))
 
 	bh.Start()
 }
 
-func SENDMESS(TEMP float64, town string, chatid telego.ChatID, bot *telego.Bot) {
+func SENDMESS(TEMP float64, town string, chatid telego.ChatID, bot *telego.Bot, mess string) {
 	tempkiyv := fmt.Sprintf("Температура повітря в "+town+": %.1f°C\n", TEMP)
 
-	message := tu.Message(
+	message1 := tu.Message(
 		chatid,
 		tempkiyv,
 	)
 
-	bot.SendMessage(message)
+	message2 := tu.Message(
+		chatid,
+		mess,
+	)
+
+	bot.SendMessage(message1)
+
+	bot.SendMessage(message2)
+
 }
