@@ -77,19 +77,22 @@ func main() {
 			fmt.Printf("Помилка при розкодуванні JSON: %s", err)
 			return
 		}
-
+		temp := data.Main.Temp
 		// Вивести температуру
-		tempkiyv := fmt.Sprintf("Температура повітря в Києві: %.1f°C\n", data.Main.Temp)
-
-		message := tu.Message(
-			chatID,
-			tempkiyv,
-		)
-
-		bot.SendMessage(message)
+		SENDMESS(temp, "Києві", chatID, bot)
 
 	}, th.CommandEqual("Kyiv"))
 
 	bh.Start()
+}
 
+func SENDMESS(TEMP float64, town string, chatid telego.ChatID, bot *telego.Bot) {
+	tempkiyv := fmt.Sprintf("Температура повітря в "+town+": %.1f°C\n", TEMP)
+
+	message := tu.Message(
+		chatid,
+		tempkiyv,
+	)
+
+	bot.SendMessage(message)
 }
