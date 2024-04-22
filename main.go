@@ -48,10 +48,17 @@ func main() {
 
 	}, th.CommandEqual("start"))
 
+	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
 		ALLINone("Kyiv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Kyiv&units=metric&appid=%s")
 	}, th.CommandEqual("Kyiv"))
+
+	// Ternopil tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Ternopil", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Ternopil&units=metric&appid=%s")
+	}, th.CommandEqual("Ternopil"))
 
 	bh.Start()
 }
@@ -61,7 +68,7 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, mess string, U
 	apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
 
 	url := fmt.Sprintf(URL, apiKey)
-	
+
 	// Виконати GET-запит
 	response, err := http.Get(url)
 	if err != nil {
