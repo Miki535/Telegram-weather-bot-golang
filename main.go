@@ -50,42 +50,42 @@ func main() {
 
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-
-		apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
-		// URL для запиту погоди в Києві
-		url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=Kyiv&units=metric&appid=%s", apiKey)
-
-		// Виконати GET-запит
-		response, err := http.Get(url)
-		if err != nil {
-			fmt.Printf("Помилка під час виконання запиту: %s", err)
-			return
-		}
-		defer response.Body.Close()
-
-		// Прочитати відповідь у вигляді масиву байтів
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Printf("Помилка при читанні відповіді: %s", err)
-			return
-		}
-
-		// Розкодувати JSON-відповідь
-		var data WeatherData
-		err = json.Unmarshal(body, &data)
-		if err != nil {
-			fmt.Printf("Помилка при розкодуванні JSON: %s", err)
-			return
-		}
-		temp := data.Main.Temp
-		SENDMESS(temp, "Києві", chatID, bot, "ТЕСТ УСПІШНО ПРОЙДЕНО!")
-
+		ALLINone("Kyiv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Kyiv&units=metric&appid=%s")
 	}, th.CommandEqual("Kyiv"))
 
 	bh.Start()
 }
 
-func SENDMESS(TEMP float64, town string, chatid telego.ChatID, bot *telego.Bot, mess string) {
+func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, mess string, URL string) {
+	// URL для запиту погоди в Києві
+	apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
+
+	url := fmt.Sprintf(URL, apiKey)
+	
+	// Виконати GET-запит
+	response, err := http.Get(url)
+	if err != nil {
+		fmt.Printf("Помилка під час виконання запиту: %s", err)
+		os.Exit(1)
+	}
+	defer response.Body.Close()
+
+	// Прочитати відповідь у вигляді масиву байтів
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Printf("Помилка при читанні відповіді: %s", err)
+		os.Exit(1)
+	}
+
+	// Розкодувати JSON-відповідь
+	var data WeatherData
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		fmt.Printf("Помилка при розкодуванні JSON: %s", err)
+		os.Exit(1)
+	}
+	TEMP := data.Main.Temp
+
 	tempkiyv := fmt.Sprintf("Температура повітря в "+town+": %.1f°C\n", TEMP)
 
 	message1 := tu.Message(
@@ -97,9 +97,9 @@ func SENDMESS(TEMP float64, town string, chatid telego.ChatID, bot *telego.Bot, 
 		chatid,
 		mess,
 	)
-
+	//SEND FIRST MESSAGE:
 	bot.SendMessage(message1)
-
+	//SEND SECOND MESSAGE:
 	bot.SendMessage(message2)
 
 }
