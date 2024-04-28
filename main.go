@@ -60,11 +60,30 @@ func main() {
 		ALLINone("Ternopil", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Ternopil&units=metric&appid=%s")
 	}, th.CommandEqual("Ternopil"))
 
+	// Odessa tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Odessa", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Odessa&units=metric&appid=%s")
+	}, th.CommandEqual("Odessa"))
+
+	// Lviv tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Lviv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Lviv&units=metric&appid=%s")
+	}, th.CommandEqual("Lviv"))
+
+	// Ivano-Frankivsk tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Ivano-Frankivsk", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Ivano-Frankivsk&units=metric&appid=%s")
+	}, th.CommandEqual("IvanoFrankivsk"))
+
 	bh.Start()
+
 }
 
 func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, mess string, URL string) {
-	// URL для запиту погоди в Києві
+	// URL для запиту погоди в town
 	apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
 
 	url := fmt.Sprintf(URL, apiKey)
