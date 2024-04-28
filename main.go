@@ -78,6 +78,30 @@ func main() {
 		ALLINone("Ivano-Frankivsk", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Ivano-Frankivsk&units=metric&appid=%s")
 	}, th.CommandEqual("IvanoFrankivsk"))
 
+	// Dnipro tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Dnipro", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Dnipro&units=metric&appid=%s")
+	}, th.CommandEqual("Dnipro"))
+
+	// Kharkiv tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Kharkiv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Kharkiv&units=metric&appid=%s")
+	}, th.CommandEqual("Kharkiv"))
+
+	// Khmelnytskyi tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Khmelnytskyi", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5/weather?q=Khmelnytskyi&units=metric&appid=%s")
+	}, th.CommandEqual("Khmelnytskyi"))
+
+	// Mukacheve tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Mukacheve", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Mukacheve&units=metric&appid=%s")
+	}, th.CommandEqual("Mukacheve"))
+
 	bh.Start()
 
 }
