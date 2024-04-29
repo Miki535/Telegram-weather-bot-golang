@@ -108,6 +108,114 @@ func main() {
 		ALLINone("Rivne", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Rivne&units=metric&appid=%s")
 	}, th.CommandEqual("Rivne"))
 
+	// Poltava tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Poltava", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Poltava&units=metric&appid=%s")
+	}, th.CommandEqual("Poltava"))
+
+	// Zhytomyr tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Zhytomyr ", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Zhytomyr&units=metric&appid=%s")
+	}, th.CommandEqual("Zhytomyr "))
+
+	// Vinnytsia tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Vinnytsia", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Vinnytsia&units=metric&appid=%s")
+	}, th.CommandEqual("Vinnytsia"))
+
+	// Sevastopol tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Sevastopol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Sevastopol&units=metric&appid=%s")
+	}, th.CommandEqual("Sevastopol"))
+
+	// Sevastopol tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Simferopol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Simferopol&units=metric&appid=%s")
+	}, th.CommandEqual("Simferopol"))
+
+	// Kherson tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Kherson", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Kherson&units=metric&appid=%s")
+	}, th.CommandEqual("Kherson"))
+
+	// Melitopol tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Melitopol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Melitopol&units=metric&appid=%s")
+	}, th.CommandEqual("Melitopol"))
+
+	// Mariupol tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Mariupol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Mariupol&units=metric&appid=%s")
+	}, th.CommandEqual("Mariupol"))
+
+	// Donetsk tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Donetsk", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Donetsk&units=metric&appid=%s")
+	}, th.CommandEqual("Donetsk"))
+
+	// Luhansk tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Luhansk", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Luhansk&units=metric&appid=%s")
+	}, th.CommandEqual("Luhansk"))
+
+	// Sumy tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Sumy", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Sumy&units=metric&appid=%s")
+	}, th.CommandEqual("Sumy"))
+
+	// Chernihiv tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Chernihiv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Chernihiv&units=metric&appid=%s")
+	}, th.CommandEqual("Chernihiv"))
+
+	// Lutsk tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Lutsk", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Lutsk&units=metric&appid=%s")
+	}, th.CommandEqual("Lutsk"))
+
+	// Uzhhorod tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Uzhhorod", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Uzhhorod&units=metric&appid=%s")
+	}, th.CommandEqual("Uzhhorod"))
+
+	// Cherkasy tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Cherkasy", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Cherkasy&units=metric&appid=%s")
+	}, th.CommandEqual("Cherkasy"))
+
+	// Zaporizhzhia tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Zaporizhzhia", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Zaporizhzhia&units=metric&appid=%s")
+	}, th.CommandEqual("Zaporizhzhia"))
+
+	// Mykolaiv tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Mykolaiv", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Mykolaiv&units=metric&appid=%s")
+	}, th.CommandEqual("Mykolaiv"))
+
+	// Chernivtsi tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Chernivtsi", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Chernivtsi&units=metric&appid=%s")
+	}, th.CommandEqual("Chernivtsi"))
+
 	bh.Start()
 
 }
