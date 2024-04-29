@@ -132,7 +132,7 @@ func main() {
 		ALLINone("Sevastopol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Sevastopol&units=metric&appid=%s")
 	}, th.CommandEqual("Sevastopol"))
 
-	// Sevastopol tempereature information
+	// Simpferopol tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
 		ALLINone("Simferopol", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Simferopol&units=metric&appid=%s")
