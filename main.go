@@ -102,6 +102,12 @@ func main() {
 		ALLINone("Mukacheve", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Mukacheve&units=metric&appid=%s")
 	}, th.CommandEqual("Mukacheve"))
 
+	// Rivne tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		ALLINone("Rivne", chatID, bot, "TRUE.", "http://api.openweathermap.org/data/2.5//weather?q=Rivne&units=metric&appid=%s")
+	}, th.CommandEqual("Rivne"))
+
 	bh.Start()
 
 }
