@@ -164,9 +164,10 @@ func main() {
 	}, th.CommandEqual("Donetsk"))
 
 	// Luhansk tempereature information
-	//bh.Handle(func(bot *telego.Bot, update telego.Update) {
-	//chatID := tu.ID(update.Message.Chat.ID)
-	//goth.CommandEqual("Luhansk"))
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		go ALLINone("Luhansk", chatID, bot, "http://api.openweathermap.org/data/2.5//weather?q=Luhansk&units=metric&appid=%s")
+	}, th.CommandEqual("Luhansk"))
 
 	// Sumy tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
