@@ -49,6 +49,11 @@ func main() {
 
 	}, th.CommandEqual("start"))
 
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+
+	}, th.AnyMessageWithText())
+
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
@@ -239,7 +244,6 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Printf("Помилка при читанні відповіді: %s", err)
-		os.Exit(1)
 	}
 
 	// Розкодувати JSON-відповідь
