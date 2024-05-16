@@ -246,7 +246,6 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	var data WeatherData
 	err = json.Unmarshal(body, &data)
 	if err != nil {
-		fmt.Printf("Помилка при розкодуванні JSON: %s", err)
 		os.Exit(1)
 	}
 	TEMP := data.Main.Temp
