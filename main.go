@@ -49,11 +49,6 @@ func main() {
 
 	}, th.CommandEqual("start"))
 
-	bh.Handle(func(bot *telego.Bot, update telego.Update) {
-		chatID := tu.ID(update.Message.Chat.ID)
-
-	}, th.AnyMessageWithText())
-
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
@@ -124,7 +119,7 @@ func main() {
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
 		go ALLINone("Zhytomyr ", chatID, bot, "http://api.openweathermap.org/data/2.5//weather?q=Zhytomyr&units=metric&appid=%s")
-	}, th.CommandEqual("Zhytomyr "))
+	}, th.CommandEqual("Zhytomyr"))
 
 	// Vinnytsia tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
@@ -283,4 +278,11 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	//SEND SECOND MESSAGE:
 	bot.SendMessage(message2)
 
+}
+
+func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
+	message := tu.Message(
+		chatid,
+		text)
+	bot.SendMessage(message)
 }
