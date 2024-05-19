@@ -21,7 +21,7 @@ type WeatherData struct {
 }
 
 func main() {
-	botToken := "token"
+	botToken := "6498753115:AAEEl4xSkVGvuiXLgdbWGk-KNeEcecT8tLc"
 
 	bot, err := telego.NewBot(botToken, telego.WithDefaultDebugLogger())
 
