@@ -13,11 +13,13 @@ import (
 	tu "github.com/mymmrac/telego/telegoutil"
 )
 
-// Структура для розкодування JSON-відповіді
-type WeatherData struct {
-	Main struct {
-		Temp float64 `json:"temp"`
-	} `json:"main"`
+type WeatherResponse struct {
+	Data []struct {
+		Temp    float64 `json:"temp"`
+		Weather struct {
+			Description string `json:"description"`
+		} `json:"weather"`
+	} `json:"data"`
 }
 
 func main() {
@@ -58,7 +60,7 @@ func main() {
 	// Ternopil tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone("Ternopil", chatID, bot, "http://api.openweathermap.org/data/2.5/weather?q=Ternopil&units=metric&appid=%s")
+		go ALLINone("Ternopil", chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Ternopil&country=UA&key=fb16830dddc5462c8ee0fcf5cb5db86c")
 	}, th.CommandEqual("Ternopil"))
 
 	// Odessa tempereature information
@@ -222,34 +224,32 @@ func main() {
 }
 
 func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
-	// URL для запиту погоди в town
-	apiKey := "3f7c7314bbddea4af2f8175638c88ad6"
+	url := URL
 
-	url := fmt.Sprintf(URL, apiKey)
-
-	// Виконати GET-запит
-	response, err := http.Get(url)
+	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Printf("Помилка під час виконання запиту: %s", err)
+		fmt.Println("Помилка при виконанні запиту:", err)
 		os.Exit(1)
 	}
-	defer response.Body.Close()
+	defer resp.Body.Close()
 
-	// Прочитати відповідь у вигляді масиву байтів
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Printf("Помилка при читанні відповіді: %s", err)
-	}
-
-	// Розкодувати JSON-відповідь
-	var data WeatherData
-	err = json.Unmarshal(body, &data)
-	if err != nil {
+		fmt.Println("Помилка при читанні відповіді:", err)
 		os.Exit(1)
 	}
-	TEMP := data.Main.Temp
 
-	tempcity := fmt.Sprintf("Температура повітря в "+town+": %.1f°C\n", TEMP)
+	var weatherResponse WeatherResponse
+	err = json.Unmarshal(body, &weatherResponse)
+	if err != nil {
+		fmt.Println("Помилка при розборі JSON:", err)
+		os.Exit(1)
+	}
+
+	TEMP := weatherResponse.Data[0].Temp
+	description := weatherResponse.Data[0].Weather.Description
+
+	tempcity := fmt.Sprintf("Температура повітря в" + town + "\nОпис погоди:" + description)
 
 	message1 := tu.Message(
 		chatid,
