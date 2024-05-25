@@ -228,60 +228,33 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Println("Помилка при виконанні запиту:", err)
-		os.Exit(1)
+		SendMessage(chatid, bot, "error1")
+		return
 	}
 	defer resp.Body.Close()
-
 	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Помилка при читанні відповіді:", err)
-		os.Exit(1)
+
+	if resp.StatusCode != http.StatusOK {
+		SendMessage(chatid, bot, "Ти какашка! ХАХАХАХАХХАХ. Завтра будеш пробувати бо апі вже всьо.... Короче папа!")
+		return
 	}
 
 	var weatherResponse WeatherResponse
 	err = json.Unmarshal(body, &weatherResponse)
 	if err != nil {
-		fmt.Println("Помилка при розборі JSON:", err)
-		os.Exit(1)
+		SendMessage(chatid, bot, "error2")
+		return
 	}
 
-	TEMP := weatherResponse.Data[0].Temp
 	description := weatherResponse.Data[0].Weather.Description
 
-	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\n", TEMP)
+	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\n", weatherResponse.Data[0].Temp)
 	tempcity2 := fmt.Sprint("Опис погоди:" + description)
 
-	message1 := tu.Message(
-		chatid,
-		tempcity,
-	)
+	message1 := tu.Message(chatid, tempcity)
+	message2 := tu.Message(chatid, tempcity2)
 
-	message2 := tu.Message(
-		chatid,
-		tempcity2,
-	)
-
-	//messagefortemp := "Для такої температури повітря потрібно вдівати:"
-
-	//var mess string
-
-	//switch {
-	//case TEMP >= -25 && TEMP < 0:
-	//	mess = messagefortemp + "\n1. Куртка або пальто: Основний елемент для захисту від холоду.Оберіть теплу куртку або пальто з достатнім утепленням.\n2. Світшот або светр: Додайте шар теплого одягу під куртку для додаткового комфорту.\n3. Джинси або штани зі штучного матеріалу: Виберіть штани, які добре утримують тепло, такі як джинси або штани з теплих матеріалів.\n4. Високі шкарпетки: Високі шкарпетки допоможуть утримати тепло в ногах.\n5. Зручні черевики або черевики на шнурках: Оберіть взуття з гарним утепленням і підошвою, щоб захистити ноги від холоду і забезпечити стійкість на слизьких дорогах.\n6. Шапка або шарф (за бажанням): Шапка допоможе утримати тепло голови, а шарф може бути корисним для захисту шиї і обличчя від вітру."
-	//case TEMP >= 0 && TEMP < 10:
-	//	mess = messagefortemp + "\n1. Легка куртка або пальто: Оберіть легку куртку або пальто з непромокаемим матеріалом для захисту від прохолоди. Це може бути весняна або осіння куртка.\n2. Світшот або тонкий светр: Додайте ще один шар одягу, вибравши світшот або тонкий светр для додаткового тепла під курткою.\n3. Джинси або штани з тонкого матеріалу: Виберіть джинси або штани з тонкого матеріалу для комфортної теплотримаючої одягу.\n4. Зручні черевики або кросівки: Носіть зручні черевики або кросівки з непромокаемою підошвою для захисту від вологи та забезпечення комфорту під час ходьби.\n5. Шапка або шарф (за бажанням): Залежно від ваших вподобань та комфорту, носіть шапку для утримання тепла голови та шарф для захисту шиї."
-	//case TEMP >= 10 && TEMP < 20:
-	//	mess = messagefortemp + "\n1. Світла куртка або плащ з легкою підкладкою.\n2. Тепла вовняна або флісова кофта.\n3. Довгі брюки, наприклад, джинси або штани зі світлого матеріалу.\n4. Капелюх або шапка для захисту від вітру.\n5. Зручне взуття з гнучкою підошвою, яке захистить ваші ноги від вологи."
-	//}
-
-	//message3 := tu.Message(
-	//	chatid,
-	//	mess,
-	//)
-	//SEND FIRST MESSAGE:
 	bot.SendMessage(message1)
-	//SEND SECOND MESSAGE:
 	bot.SendMessage(message2)
 }
 
