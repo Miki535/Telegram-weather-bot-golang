@@ -249,11 +249,17 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	TEMP := weatherResponse.Data[0].Temp
 	description := weatherResponse.Data[0].Weather.Description
 
-	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\n", TEMP, "Опис погоди:%s\n", description)
+	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\n", TEMP)
+	tempcity2 := fmt.Sprint("Опис погоди:" + description)
 
 	message1 := tu.Message(
 		chatid,
 		tempcity,
+	)
+
+	message2 := tu.Message(
+		chatid,
+		tempcity2,
 	)
 
 	messagefortemp := "Для такої температури повітря потрібно вдівати:"
@@ -269,15 +275,16 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 		mess = messagefortemp + "\n1. Світла куртка або плащ з легкою підкладкою.\n2. Тепла вовняна або флісова кофта.\n3. Довгі брюки, наприклад, джинси або штани зі світлого матеріалу.\n4. Капелюх або шапка для захисту від вітру.\n5. Зручне взуття з гнучкою підошвою, яке захистить ваші ноги від вологи."
 	}
 
-	message2 := tu.Message(
+	message3 := tu.Message(
 		chatid,
 		mess,
 	)
 	//SEND FIRST MESSAGE:
-	bot.SendMessage(message1)
+	go bot.SendMessage(message1)
 	//SEND SECOND MESSAGE:
-	bot.SendMessage(message2)
-
+	go bot.SendMessage(message2)
+	//SEND THIRD MESSAGE:
+	go bot.SendMessage(message3)
 }
 
 func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
