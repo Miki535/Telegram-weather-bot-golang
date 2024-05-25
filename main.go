@@ -247,9 +247,9 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	}
 
 	TEMP := weatherResponse.Data[0].Temp
-	//description := weatherResponse.Data[0].Weather.Description
+	description := weatherResponse.Data[0].Weather.Description
 
-	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\\n", weatherResponse.Data[0].Temp, "Опис погоди:", weatherResponse.Data[0].Weather.Description)
+	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\\n", TEMP, "Опис погоди:%s\\n", description)
 
 	message1 := tu.Message(
 		chatid,
