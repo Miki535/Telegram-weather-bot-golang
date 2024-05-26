@@ -267,6 +267,6 @@ func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
 }
 
 func descriptionmessage(desc string, chatid telego.ChatID, bot *telego.Bot) {
-	message2 := tu.Message(chatid, fmt.Sprintf("Опис погоди:%s"+desc))
+	message2 := tu.Message(chatid, fmt.Sprintf("Опис погоди:%s", desc))
 	bot.SendMessage(message2)
 }
