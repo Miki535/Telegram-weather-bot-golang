@@ -235,7 +235,7 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	body, err := ioutil.ReadAll(resp.Body)
 
 	if resp.StatusCode != http.StatusOK {
-		SendMessage(chatid, bot, "Ти какашка! ХАХАХАХАХХАХ. Завтра будеш пробувати бо апі вже всьо.... Короче папа!")
+		SendMessage(chatid, bot, "Ви використали весь ліміт API! Бот буде доступним через 24 години!")
 		return
 	}
 
@@ -248,14 +248,15 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 
 	description := weatherResponse.Data[0].Weather.Description
 
-	tempcity := fmt.Sprintf("Температура повітря в %.1f°C\n", weatherResponse.Data[0].Temp)
-	tempcity2 := fmt.Sprint("Опис погоди:" + description)
-
+	tempcity := fmt.Sprintf("Температура повітря %.1f°C\n", weatherResponse.Data[0].Temp)
 	message1 := tu.Message(chatid, tempcity)
-	message2 := tu.Message(chatid, tempcity2)
-
 	bot.SendMessage(message1)
-	bot.SendMessage(message2)
+	switch description {
+	case "Clear sky":
+		descriptionmessage("Чисте небо", chatid, bot)
+	default:
+		descriptionmessage("Нема опису погоди", chatid, bot)
+	}
 }
 
 func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
@@ -263,4 +264,9 @@ func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
 		chatid,
 		text)
 	bot.SendMessage(message)
+}
+
+func descriptionmessage(desc string, chatid telego.ChatID, bot *telego.Bot) {
+	message2 := tu.Message(chatid, fmt.Sprintf("Опис погоди:", desc))
+	bot.SendMessage(message2)
 }
