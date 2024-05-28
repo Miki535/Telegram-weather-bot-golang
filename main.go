@@ -252,8 +252,10 @@ func ALLINone(town string, chatid telego.ChatID, bot *telego.Bot, URL string) {
 	message1 := tu.Message(chatid, tempcity)
 	bot.SendMessage(message1)
 	switch description {
+	case "Broken clouds":
+		go descriptionmessage("хмарність з проясненнями", chatid, bot)
 	case "Clear sky":
-		go descriptionmessage("Чисте небо", chatid, bot)
+		go descriptionmessage("чисте небо", chatid, bot)
 	default:
 		go descriptionmessage(description, chatid, bot)
 	}
@@ -267,6 +269,6 @@ func SendMessage(chatid telego.ChatID, bot *telego.Bot, text string) {
 }
 
 func descriptionmessage(desc string, chatid telego.ChatID, bot *telego.Bot) {
-	message2 := tu.Message(chatid, fmt.Sprintf("Опис погоди:%s", desc))
+	message2 := tu.Message(chatid, fmt.Sprintf("Опис погоди:%s ", desc))
 	bot.SendMessage(message2)
 }
