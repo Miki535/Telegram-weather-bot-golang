@@ -258,6 +258,8 @@ func ALLINone(chatid telego.ChatID, bot *telego.Bot, URL string) {
 		go descriptionmessage("суцільна хмарність", chatid, bot)
 	case "Scattered clouds":
 		go descriptionmessage("мінлива хмарність", chatid, bot)
+	case "Drizzle":
+		go descriptionmessage("мряка", chatid, bot)
 	default:
 		go descriptionmessage(description, chatid, bot)
 	}
