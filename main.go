@@ -44,13 +44,15 @@ func main() {
 
 		message := tu.Message(
 			chatID,
-			"Привіт! В цьому боті ви можете дізнаватись температуру повітр'я в різних містах України! Щоб почати введіть /та назву свого міста. Успіхів!",
+			"Привіт! В цьому боті ви можете дізнаватись температуру повітр'я в різних містах України! Щоб почати введіть /та назву свого міста. Також ви можете використати команду /buttons щоб використовувати кнопки за допомогою який дізнаватись температуру. Успіхів!",
 		)
 
 		bot.SendMessage(message)
 
 	}, th.CommandEqual("start"))
 
+	//buttons command
+	
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
