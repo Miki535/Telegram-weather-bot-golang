@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"golang.org/x/crypto/sha3"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -23,9 +25,32 @@ type WeatherResponse struct {
 }
 
 func main() {
-	botToken := "HYUvamAneTOKEN"
+	fmt.Println("Starting Bot")
+	var token string
+	var apiKey string
+	fmt.Println("Enter Bot Token to authenticate")
+	fmt.Scan(&token)
+	fmt.Println("Enter API key to authenticate")
+	fmt.Scan(&apiKey)
+	// Захешований токен
+	tokenHash := "7845d38d32a4fefd6bcd8607b883b69c609fb1dd0cb2972ce9626cc35ed4c50a"
+	ApiKeyHash := "c0e7ced8de9bed006980b7fbcb92bd58a4b7e3c1721a5a1066b6502a17bd9aac"
+	data1 := []byte(token)
+	hash := sha3.Sum256(data1)
+	data2 := []byte(apiKey)
+	hash2 := sha3.Sum256(data2)
+	// Переводимо hash з типу byte до типу string
+	hashString1 := hex.EncodeToString(hash[:])
+	hashString2 := hex.EncodeToString(hash2[:])
+	// Перевірка на справжність токену і клоча до апі бота
+	if tokenHash == hashString1 && ApiKeyHash == hashString2 {
+		fmt.Println("Bot is already authenticated")
+	} else {
+		fmt.Println("Bot is not authenticated")
+		os.Exit(0)
+	}
 
-	bot, err := telego.NewBot(botToken, telego.WithDefaultDebugLogger())
+	bot, err := telego.NewBot(token, telego.WithDefaultDebugLogger())
 
 	if err != nil {
 		fmt.Println(err)
@@ -52,7 +77,24 @@ func main() {
 	}, th.CommandEqual("start"))
 
 	//buttons command
-	
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatId := tu.ID(update.Message.Chat.ID)
+
+		keyboard := tu.Keyboard(
+			tu.KeyboardRow(
+				tu.KeyboardButton("/Ternopil"),
+				tu.KeyboardButton("Documentation"),
+			),
+		)
+		message := tu.Message(
+			chatId,
+			"Вибeріть, що хочете обрати!",
+		).WithReplyMarkup(keyboard)
+
+		bot.SendMessage(message)
+
+	}, th.CommandEqual("buttons"))
+
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
@@ -62,7 +104,7 @@ func main() {
 	// Ternopil tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Ternopil&country=UA&key=fb16830dddc5462c8ee0fcf5cb5db86c")
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Ternopil&country=UA&key="+apiKey)
 	}, th.CommandEqual("Ternopil"))
 
 	// Odessa tempereature information
