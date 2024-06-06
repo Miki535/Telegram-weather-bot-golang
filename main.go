@@ -122,8 +122,14 @@ func main() {
 
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatId := tu.ID(update.Message.Chat.ID)
-		bot.SendMessage(tu.Message(chatId, "Всі доступні команди: Міста: /Ternopil, /Kyiv, /Odessa, /Kharkiv, /Khmelnytskyi, /Mukacheve, /Rivne, /Poltava, /Zhytomyr, /Vinnytsia, /Sevastopol, /Simferopol, /Kherson , /Melitopol, /Mariupol, /Donetsk, /Luhansk, /Sumy, /Chernihiv, /Lutsk, /Cherkasy, /Zaporizhzhia, /Mykolaiv, /Chernivtsi, Інші: /start, /help, /buttons"))
+		bot.SendMessage(tu.Message(chatId, "Всі доступні команди: Міста: /Ternopil, /Kyiv, /Odessa, /Kharkiv, /Khmelnytskyi, /Mukacheve, /Rivne, /Poltava, /Zhytomyr, /Vinnytsia, /Sevastopol, /Simferopol, /Kherson , /Melitopol, /Mariupol, /Donetsk, /Luhansk, /Sumy, /Chernihiv, /Lutsk, /Cherkasy, /Zaporizhzhia, /Mykolaiv, /Chernivtsi, Для розробників: /opensourse, Інші: /start, /help, /buttons"))
 	}, th.CommandEqual("help"))
+
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatId := tu.ID(update.Message.Chat.ID)
+		bot.SendMessage(tu.Message(chatId, "Цей проект є опен-сорс! Тому тримайте github лінк!"))
+		bot.SendMessage(tu.Message(chatId, "https://github.com/Miki535/Telegram-weather-bot-golang"))
+	}, th.CommandEqual("opensourse"))
 
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
