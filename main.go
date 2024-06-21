@@ -24,6 +24,8 @@ type WeatherResponse struct {
 	} `json:"data"`
 }
 
+var UrL string
+
 func main() {
 	fmt.Println("Starting Bot")
 	var token string
@@ -134,177 +136,194 @@ func main() {
 	// Kyiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kyiv&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kyiv&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Kyiv"))
 
 	// Ternopil tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Ternopil&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Ternopil&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Ternopil"))
+
+	//TernoSaw
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kyiv&country=UA&key="+apiKey, "TernoSaw")
+	}, th.CommandEqual("TernoSaw"))
 
 	// Odessa tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Odessa&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Odessa&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Odessa"))
 
 	// Lviv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Lviv&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Lviv&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Lviv"))
 
 	// Ivano-Frankivsk tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("IvanoFrankivsk"))
 
 	// Dnipro tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Dnipro&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Dnipro&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Dnipro"))
 
 	// Kharkiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kharkiv&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kharkiv&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Kharkiv"))
 
 	// Khmelnytskyi tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Khmelnytskyi&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Khmelnytskyi&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Khmelnytskyi"))
 
 	// Mukacheve tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mukacheve&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mukacheve&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Mukacheve"))
 
 	// Rivne tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Rivne&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Rivne&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Rivne"))
 
 	// Poltava tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Poltava&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Poltava&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Poltava"))
 
 	// Zhytomyr tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Zhytomyr&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Zhytomyr&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Zhytomyr"))
 
 	// Vinnytsia tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Vinnytsia&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Vinnytsia&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Vinnytsia"))
 
 	// Sevastopol tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Sevastopol&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Sevastopol&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Sevastopol"))
 
 	// Simpferopol tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Simferopol&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Simferopol&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Simferopol"))
 
 	// Kherson tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kherson&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Kherson&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Kherson"))
 
 	// Melitopol tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Melitopol&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Melitopol&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Melitopol"))
 
 	// Mariupol tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mariupol&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mariupol&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Mariupol"))
 
 	// Donetsk tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Donetsk&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Donetsk&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Donetsk"))
 
 	// Luhansk tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Luhansk&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Luhansk&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Luhansk"))
 
 	// Sumy tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Sumy&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Sumy&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Sumy"))
 
 	// Chernihiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Chernihiv&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Chernihiv&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Chernihiv"))
 
 	// Lutsk tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Lutsk&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Lutsk&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Lutsk"))
 
 	// Uzhhorod tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Uzhhorod&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Uzhhorod&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Uzhhorod"))
 
 	// Cherkasy tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Cherkasy&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Cherkasy&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Cherkasy"))
 
 	// Zaporizhzhia tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Zaporizhzhia&country=UA&key="+apiKey)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Zaporizhzhia&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Zaporizhzhia"))
 
 	// Mykolaiv tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mykolaiv&country=UA&key=")
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Mykolaiv&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Mykolaiv"))
 
 	// Chernivtsi tempereature information
 	bh.Handle(func(bot *telego.Bot, update telego.Update) {
 		chatID := tu.ID(update.Message.Chat.ID)
-		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Chernivtsi&country=UA&key=")
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Chernivtsi&country=UA&key="+apiKey, "")
 	}, th.CommandEqual("Chernivtsi"))
 	bh.Start()
+
+	// Warsaw tempereature information
+	bh.Handle(func(bot *telego.Bot, update telego.Update) {
+		chatID := tu.ID(update.Message.Chat.ID)
+		go ALLINone(chatID, bot, "https://api.weatherbit.io/v2.0/current?city=Warsaw&country=UA&key="+apiKey, "")
+	})
 }
 
-func ALLINone(chatid telego.ChatID, bot *telego.Bot, URL string) {
+func ALLINone(chatid telego.ChatID, bot *telego.Bot, URL string, test string) {
 	url := URL
-
-	resp, err := http.Get(url)
+	if test != "" {
+		UrL = "https://api.weatherbit.io/v2.0/current?city=Chernivtsi&country=UA&key="
+	} else {
+		UrL = url
+	}
+	//hello
+	resp, err := http.Get(UrL)
 	if err != nil {
 		SendMessage(chatid, bot, "Помилка при передачі данних!")
 		return
@@ -344,6 +363,24 @@ func ALLINone(chatid telego.ChatID, bot *telego.Bot, URL string) {
 		go descriptionmessage("трішки хмаринок у небі", chatid, bot)
 	default:
 		go descriptionmessage(description, chatid, bot)
+	}
+
+	// Warsaw and Ternopil temperature diferents
+	if test != "" {
+		Warsaw := weatherResponse.Data[0].Temp
+		Ternopil := weatherResponse.Data[0].Temp
+		bot.SendMessage(tu.Message(chatid, fmt.Sprint(Warsaw, Ternopil)))
+		if Warsaw < Ternopil {
+			result := fmt.Sprintf("In Ternopil tempereature higher on", Ternopil-Warsaw)
+			bot.SendMessage(tu.Message(chatid, result))
+		} else if Warsaw > Ternopil {
+			result := fmt.Sprintf("In Warsaw temperature higher on", Ternopil-Warsaw)
+			bot.SendMessage(tu.Message(chatid, result))
+		} else {
+			bot.SendMessage(tu.Message(chatid, "Warsaw = Ternopil"))
+		}
+	} else {
+		return
 	}
 }
 
